@@ -1,0 +1,32 @@
+{
+  "name": "shadow-metrics",
+  "version": "1.0.0",
+  "description": "\\",
+  "homepage": "https://github.com/Jhonatan-Andrade/Shadow-Metrics#readme",
+  "bugs": {
+    "url": "https://github.com/Jhonatan-Andrade/Shadow-Metrics/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jhonatan-Andrade/Shadow-Metrics.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "services": "docker-compose up -d",
+    "dev": "tsx watch --env-file .env src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "fastify": "^5.8.4",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2"
+  }
+}

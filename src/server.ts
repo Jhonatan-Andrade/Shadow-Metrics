@@ -1,21 +1,6 @@
-import Fastify from 'fastify'
-import cors from "@fastify/cors";
 
-const app = Fastify({logger: false})
+import { app } from "./app";
 const apiPort = process.env.PORT ? Number(process.env.PORT) : 3333;
-
-app.register(cors, {
-    origin: true, 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true 
-});
-app.get('/', (req, res) => {
-    res.send({
-        message: "🌱 Bem-vindo(a) à Shadow Metrics!",
-        description: "Uma API dedicada a coletar e analisar dados coletada pelos nossos scripts de monitoramento.",
-        version: "1.0.0",
-    });
-});
 
 async function startServer() {
   try {

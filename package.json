@@ -1,34 +1,30 @@
 {
   "name": "shadow-metrics",
-  "version": "1.0.0",
-  "description": "\\",
-  "homepage": "https://github.com/Jhonatan-Andrade/Shadow-Metrics#readme",
-  "bugs": {
-    "url": "https://github.com/Jhonatan-Andrade/Shadow-Metrics/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jhonatan-Andrade/Shadow-Metrics.git"
-  },
-  "license": "ISC",
-  "author": "",
-  "type": "commonjs",
-  "main": "server.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "services": "docker-compose up -d",
-    "dev": "tsx watch --env-file .env src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@fastify/cookie": "^11.0.2",
-    "@fastify/cors": "^11.2.0",
-    "axios": "^1.15.0",
-    "fastify": "^5.8.4",
-    "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@types/node": "^25.5.2"
+    "@eslint/js": "^9.39.4",
+    "@types/node": "^24.12.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.4.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.58.0",
+    "vite": "^8.0.4"
   }
 }

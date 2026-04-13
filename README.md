@@ -33,8 +33,3 @@ Os dados coletados são processados pelo Zabbix Server, armazenados em um banco 
 <a href="https://ubuntu.com/" target="_blank">
 <img src="https://img.shields.io/badge/Ubuntu-E9430F?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Ubuntu Server">
 </a>
-<<<<<<< HEAD
-=======
-
-### https://mui.com/x/react-charts/quickstart/
->>>>>>> 8bc1cce (feat: adicionar monitoramento inicial de recursos do sistema)

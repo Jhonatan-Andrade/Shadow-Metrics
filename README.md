@@ -1,73 +1,35 @@
-# React + TypeScript + Vite
+## 🕵️‍♂️ Shadow Metrics – Documentação do Sistema
+O Shadow Metrics é uma solução de monitoramento de infraestrutura de TI baseada na plataforma Zabbix. O sistema foi concebido para fornecer visibilidade em tempo real sobre a integridade de ativos de rede, servidores e serviços, permitindo uma gestão proativa e a mitigação antecipada de incidentes
+#### 📖 1. Descrição do Projeto
+O sistema  utiliza coletores de dados (Agentes Zabbix e protocolo SNMP) para extrair métricas de desempenho de diferentes sistemas operacionais e dispositivos de rede.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Os dados coletados são processados pelo Zabbix Server, armazenados em um banco de dados relacional e visualizados através de uma interface web personalizada. O foco principal é transformar dados brutos (uso de CPU, latência, tráfego) em informações acionáveis através de alertas inteligentes e dashboards estratégicos.
 
-Currently, two official plugins are available:
+#### 📚 2. Documentação
+<a href="https://www.figma.com/design/rysLklzzhbRfqDpdR32Ook/BeauMoney?node-id=5-118&t=ZTjS6GvGGGzxTfYL-0" target="_blank">
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma Design">
+</a>
+<a href="https://github.com/Jhonatan-Andrade/Shadow-Metrics/blob/main/documentation.md" target="_blank">
+  <img src="https://img.shields.io/badge/Documentation-0099ff?style=for-the-badge&logo=github&logoColor=white" alt="Documentation">
+</a>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+#### 🛠️ 3. Tecnologias Utilizadas
+<a href="https://nextjs.org/docs" target="_blank">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js Documentation">
+</a>
+<a href="https://axios-http.com/ptbr/docs/intro" target="_blank">
+  <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios Documentation">
+</a>
+<a href="https://www.zabbix.com/" target="_blank">
+<img src="https://img.shields.io/badge/Zabbix-CC0000?style=for-the-badge&logo=zabbix&logoColor=white" alt="Zabbix">
+</a>
+</br>
+<a href="https://www.postgresql.org/" target="_blank">
+<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL">
+</a>
+<a href="https://www.docker.com/" target="_blank">
+<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+</a>
+<a href="https://ubuntu.com/" target="_blank">
+<img src="https://img.shields.io/badge/Ubuntu-E9430F?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Ubuntu Server">
+</a>

@@ -13,12 +13,13 @@ export default function Menu() {
 }
 
 const Main = styled.nav`
-    width: 16rem;
+    width: 20rem;
     height: 100vh;
     background-color: ${({ theme }) => theme.cardBg};
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 `;
 const Nav = styled.nav`
     width: 100%;

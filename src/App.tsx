@@ -7,8 +7,9 @@ export default  function App() {
   return (
     <Main>
       <Menu/>
-      <Dashboard />
       <ThemeButton />
+      <Dashboard />
+      
     </Main>
   );
 }
@@ -16,8 +17,7 @@ const Main = styled.main`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  gap: 20px;
+  gap: 4px;
 `;

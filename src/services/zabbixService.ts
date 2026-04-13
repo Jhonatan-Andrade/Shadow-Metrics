@@ -10,19 +10,19 @@ const zabbixApi = axios.create({
     }
 });
 
-export interface ZabbixHost {
+interface ZabbixHost {
     hostid: string;
     name: string;
     interfaces: Array<{
         ip: string;
     }>;
 }
-export interface ZabbixItem {
+interface ZabbixItem {
     itemid: string;
     name: string;
     key_: string;
 }
-export interface ZabbixItemWithValue extends ZabbixItem {
+interface ZabbixItemWithValue extends ZabbixItem {
     lastvalue: string;
     units?: string;
 }
@@ -47,7 +47,7 @@ async function callZabbix(method: string, params = {}) {
 }
 
 
-export  async function getHosts(): Promise<ZabbixHost[]> {
+async function getHosts(): Promise<ZabbixHost[]> {
     const hosts = await callZabbix("host.get", {
         output: ["hostid", "name"],
         selectInterfaces: ["ip"]
@@ -55,7 +55,7 @@ export  async function getHosts(): Promise<ZabbixHost[]> {
     return hosts;
 }
 
-export async function getItemsByHostId(hostid: string): Promise<ZabbixItem[]> {
+async function getItemsByHostId(hostid: string): Promise<ZabbixItem[]> {
     const items = await callZabbix("item.get", {
         output: ["itemid", "name", "key_"],
         hostids: hostid
@@ -63,8 +63,7 @@ export async function getItemsByHostId(hostid: string): Promise<ZabbixItem[]> {
     
     return items;
 }
-
-export async function getCpuUsage(hostId: string): Promise<ZabbixItemWithValue[]> {
+async function getCpuUsage(hostId: string): Promise<ZabbixItemWithValue[]> {
     const params = {
         output: ["itemid", "name", "lastvalue", "units"],
         hostids: hostId,
@@ -75,13 +74,54 @@ export async function getCpuUsage(hostId: string): Promise<ZabbixItemWithValue[]
             value_type: [0, 3] 
         }
     };
-
     const result = await callZabbix("item.get", params);
-    
     const cpuItems: ZabbixItemWithValue[] = result;
-    cpuItems.forEach((item: ZabbixItemWithValue) => {
-        console.log(`Métrica: ${item.name}`);
-        console.log(`Uso Atual: ${item.lastvalue}${item.units || '%'}`);
-    });
     return cpuItems;
 }
+
+async function getMemoryUsage(hostId: string): Promise<ZabbixItemWithValue[]> {
+    const params = {
+        output: ["lastvalue", "units"],
+        hostids: hostId,
+        search: {
+            key_: "vm.memory.util" 
+        }
+    };
+    const result = await callZabbix("item.get", params);
+    const memoryItems: ZabbixItemWithValue[] = result;
+    return memoryItems;
+}
+
+interface CpuHistoryPoint {
+    clock: number;
+    value: string;
+}
+
+async function getCpuHistory(hostId: string): Promise<CpuHistoryPoint[]> {
+
+    const timeTill = Math.floor(Date.now() / 1000);
+    const timeFrom = timeTill - 3600; // Última hora
+
+    const cpuItems = await getCpuUsage(hostId);
+    if (cpuItems.length === 0) return [];
+    const itemId = cpuItems[0].itemid;
+
+    const params: any = {
+        output: "extend",
+        itemids: itemId,
+        history: 0, 
+        sortfield: "clock",
+        sortorder: "ASC"
+    };
+    if (timeFrom) params.time_from = timeFrom;
+    if (timeTill) params.time_till = timeTill;
+
+    const result = await callZabbix("history.get", params);
+    return result.map((item: any) => ({
+        clock: parseInt(item.clock),
+        value: item.value
+    }));
+}
+
+export { getHosts, getItemsByHostId, getCpuUsage, getMemoryUsage, getCpuHistory };
+export type { ZabbixHost, ZabbixItem, ZabbixItemWithValue, CpuHistoryPoint };

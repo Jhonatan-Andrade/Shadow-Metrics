@@ -15,6 +15,8 @@ interface ZabbixHost {
     name: string;
     interfaces: Array<{
         ip: string;
+        available:string
+        error:string;
     }>;
 }
 interface ZabbixItem {
@@ -26,6 +28,11 @@ interface ZabbixItemWithValue extends ZabbixItem {
     lastvalue: string;
     units?: string;
 }
+interface CpuHistoryPoint {
+    clock: number;
+    value: string;
+}
+
 async function callZabbix(method: string, params = {}) {
     try {
         const response = await zabbixApi.post('', {
@@ -50,7 +57,7 @@ async function callZabbix(method: string, params = {}) {
 async function getHosts(): Promise<ZabbixHost[]> {
     const hosts = await callZabbix("host.get", {
         output: ["hostid", "name"],
-        selectInterfaces: ["ip"]
+        selectInterfaces: ["ip","available", "error"]
     });
     return hosts;
 }
@@ -79,24 +86,6 @@ async function getCpuUsage(hostId: string): Promise<ZabbixItemWithValue[]> {
     return cpuItems;
 }
 
-async function getMemoryUsage(hostId: string): Promise<ZabbixItemWithValue[]> {
-    const params = {
-        output: ["lastvalue", "units"],
-        hostids: hostId,
-        search: {
-            key_: "vm.memory.util" 
-        }
-    };
-    const result = await callZabbix("item.get", params);
-    const memoryItems: ZabbixItemWithValue[] = result;
-    return memoryItems;
-}
-
-interface CpuHistoryPoint {
-    clock: number;
-    value: string;
-}
-
 async function getCpuHistory(hostId: string): Promise<CpuHistoryPoint[]> {
 
     const timeTill = Math.floor(Date.now() / 1000);
@@ -123,5 +112,13 @@ async function getCpuHistory(hostId: string): Promise<CpuHistoryPoint[]> {
     }));
 }
 
-export { getHosts, getItemsByHostId, getCpuUsage, getMemoryUsage, getCpuHistory };
+async function getHostStatus(hostId: string): Promise<string> {
+    const status = await callZabbix("host.get", {
+        hostids: hostId,
+        output: ["status"]
+    });
+    return status;
+}
+
+export { getHosts, getItemsByHostId, getCpuUsage, getCpuHistory, getHostStatus };
 export type { ZabbixHost, ZabbixItem, ZabbixItemWithValue, CpuHistoryPoint };

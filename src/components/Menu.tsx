@@ -8,7 +8,6 @@ export default function Menu() {
             <Nav>  
             </Nav>
         </Main>
-
     );
 }
 

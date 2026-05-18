@@ -9,7 +9,7 @@ Os dados coletados são processados pelo Zabbix Server, armazenados em um banco 
 <a href="https://www.figma.com/design/rysLklzzhbRfqDpdR32Ook/BeauMoney?node-id=5-118&t=ZTjS6GvGGGzxTfYL-0" target="_blank">
   <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma Design">
 </a>
-<a href="https://github.com/Jhonatan-Andrade/Shadow-Metrics/blob/main/documentation.md" target="_blank">
+<a href="https://github.com/Jhonatan-Andrade/Shadow-Metrics/blob/main/documentation/initialize.md" target="_blank">
   <img src="https://img.shields.io/badge/Documentation-0099ff?style=for-the-badge&logo=github&logoColor=white" alt="Documentation">
 </a>
 

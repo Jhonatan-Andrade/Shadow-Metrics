@@ -1,9 +1,8 @@
 
 import styled from 'styled-components';
 import { useEffect, useState} from 'react';
-import { getHosts, type ZabbixHost } from '../services/zabbixService';
-import CpuLineChart from '../components/CpuLineChart';
-
+import { getCpuHistory, getHosts, getMemoryHistory, type ZabbixHost } from '../services/zabbixService';
+import MetricLineChart from '../components/MetricLineChart';
 
 export default function Dashboard() {
   const [hosts, setHosts ] = useState<ZabbixHost[]>([]);
@@ -30,13 +29,27 @@ export default function Dashboard() {
       <BoxText>
         <Text>Bem-vindo ao monitoramento de sistema!</Text>
       </BoxText>
-      <ListCpuLineChart>  
+      <ListHostLineChart>  
         {loading ? (
           <p>Carregando dados...</p>
         ) : (
-          hosts.map(host => (<CpuLineChart hosts={host}  color="#0c00f1" />))
+          hosts.map(host => (
+          <ItemHostLineChart  key={host.hostid}>
+            <MetricLineChart 
+              hosts={hosts[0]} 
+              color="#00ffcc" 
+              title="Uso da CPU" 
+              fetchMethod={getCpuHistory} 
+            />
+            <MetricLineChart 
+              hosts={hosts[0]} 
+              color="#ff9900" 
+              title="Uso de Memória" 
+              fetchMethod={getMemoryHistory} 
+            />
+          </ItemHostLineChart>))
         )}
-      </ListCpuLineChart>
+      </ListHostLineChart>
     </Main>
   );
 }
@@ -57,16 +70,25 @@ const Main = styled.main`
     height: 0;
   }
 `;
-const ListCpuLineChart = styled.div`
+const ListHostLineChart = styled.ul`
   display: grid;
   grid-template-columns: auto auto ;
   gap: 0.5rem;
 `
-const BoxText = styled.h2`
+const ItemHostLineChart = styled.li`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  list-style:none;
+  gap: 1rem;
+`
+const BoxText = styled.div`
   width: 100%;
   height: 60px;
   display: flex;
   align-items: center;
+  padding-top:2rem;
 `
 
 const Text = styled.h2`

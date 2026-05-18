@@ -116,8 +116,9 @@ http://localhost:5173
 ##### 8. Configurar o Zabbix Agent no Windows
 
 Para monitorar a sua máquina Windows local (ou servidores Windows externos) e visualizar as métricas no Shadow Metrics, siga os passos abaixo:
+
 <a href="https://github.com/Jhonatan-Andrade/Shadow-Metrics/blob/main/documentation/configZabbixAgent.md" target="_blank">
-  <img src="https://img.shields.io/badge/Documentation-0099ff?style=for-the-badge&logo=github&logoColor=white" alt="Documentation">
+  <img src="https://img.shields.io/badge/Zabbix%20Agent-ff0000?style=for-the-badge&logo=github&logoColor=white" alt="Zabbix Agent"> 
 </a>
 
 

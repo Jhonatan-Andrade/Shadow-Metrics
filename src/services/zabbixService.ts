@@ -3,6 +3,8 @@ import axios from 'axios';
 const ZABBIX_URL = import.meta.env.VITE_ZABBIX_URL;
 const API_TOKEN = import.meta.env.VITE_ZABBIX_API_TOKEN;
 
+const updateTime = 3600; // 1 hora em segundos
+
 const zabbixApi = axios.create({
     baseURL: ZABBIX_URL,
     headers: {
@@ -100,7 +102,7 @@ export async function getCpuHistory(hostId: string): Promise<MetricResponse> {
             history: historyType, 
             sortfield: "clock",
             sortorder: "ASC",
-            time_from: Math.floor(Date.now() / 1000) - 3600,
+            time_from: Math.floor(Date.now() / 1000) - updateTime,
             time_till: Math.floor(Date.now() / 1000)
         };
 
@@ -143,17 +145,14 @@ export async function getMemoryHistory(hostId: string): Promise<MetricResponse> 
         const isPercent = item.units === '%' || item.key_.includes('pavailable') || item.key_.includes('util');
         const historyType = isPercent ? 0 : 3; 
 
-        const timeTill = Math.floor(Date.now() / 1000);
-        const timeFrom = timeTill - 3600; 
-
         const params = {
             output: "extend",
             itemids: item.itemid,
             history: historyType, 
             sortfield: "clock",
             sortorder: "ASC",
-            time_from: timeFrom,
-            time_till: timeTill
+            time_from: Math.floor(Date.now() / 1000) - updateTime,
+            time_till: Math.floor(Date.now() / 1000)
         };
 
         const result = await callZabbix("history.get", params);

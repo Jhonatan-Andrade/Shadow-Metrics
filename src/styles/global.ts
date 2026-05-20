@@ -5,6 +5,7 @@ declare module 'styled-components' {
     body: string;
     text: string;
     cardBg: string;
+    menuBg: string;
     accent: string;
     border: string;
   }

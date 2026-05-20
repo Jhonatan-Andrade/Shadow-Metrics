@@ -15,15 +15,20 @@ export default function MetricLineChart({ hosts, color, title, fetchMethod }: Me
   const [metricData, setMetricData] = useState<HistoryPoint[]>([]);
   const [units, setUnits] = useState<string>(""); 
   const [loading, setLoading] = useState(true);
+  const [hasFetchedOnce, setHasFetchedOnce] = useState(false);
 
   const times = metricData.map(point => new Date(point.clock * 1000));
   const values = metricData.map(point => parseFloat(point.value));
 
   const theme = useTheme();
 
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit'});
-  };
+  //manter os dados antigo enquanto carrega os novos para evitar tela em branco
+ 
+
+
+  function formatTime(date: Date) {
+    return date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  }
 
   
 const formatValue = (value: number | null) => {
@@ -37,6 +42,9 @@ const formatValue = (value: number | null) => {
   async function fetchMetrics() {
     try {
       if (hosts?.hostid) {
+        if (metricData.length === 0) {
+          setLoading(true);
+        }
         const response = await fetchMethod(hosts.hostid);
         setMetricData(response.points);
         setUnits(response.units);
@@ -45,8 +53,11 @@ const formatValue = (value: number | null) => {
       console.error(`Error fetching ${title} data:`, error);
     } finally {
       setLoading(false);
+      setHasFetchedOnce(true);
     }
   }
+
+
 
   useEffect(() => {
     fetchMetrics();
@@ -56,13 +67,13 @@ const formatValue = (value: number | null) => {
     };
   }, [hosts?.hostid, fetchMethod]);
 
-  if (loading) {
+  if (loading && !hasFetchedOnce) {
     return <Main style={{ justifyContent: 'center', alignItems: 'center', height: 200 }}><p style={{ color: theme.text }}>Carregando...</p></Main>;
   }
 
   return (
     <Main>
-      <HostName>{hosts.name} ({title})</HostName>
+      <HostName>{title}</HostName>
       {metricData.length > 0 ? (
         <LineChart
           xAxis={[{
@@ -102,6 +113,8 @@ const Main = styled.main`
   gap: 20px;
   color: #ffffff;
   border-radius: 0.5rem;
+  border: 1px solid ${({ theme }) => theme.border};
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 `;
 
 const HostName = styled.h2`

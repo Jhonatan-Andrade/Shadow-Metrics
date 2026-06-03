@@ -57,7 +57,15 @@ async function callZabbix(method: string, params = {}) {
         throw error;
     }
 }
-
+export async function checkZabbixServer(): Promise<boolean> {
+    try {
+        await callZabbix("apiinfo.version");
+        return true;
+    }   catch (error) {
+        console.error("Zabbix Server está offline:", error);
+        return false;
+    }
+}
 export async function getHosts(): Promise<ZabbixHost[]> {
     return await callZabbix("host.get", {
         output: ["hostid", "name"],

@@ -1,3 +1,8 @@
+import { Layout } from "./layout.tsx";
+
 export default function Alerts() {
-  return (<h1>Alerts</h1>);
+  return (
+  <Layout>
+    <h1>Alerts</h1>
+  </Layout>);
 }

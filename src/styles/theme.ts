@@ -1,17 +1,29 @@
+
+
 export const lightTheme = {
   body: '#F5F5F5',
   text: '#121212',
-  cardBg: 'rgba(0, 0, 0, 0.1)',
-  menuBg: 'rgba(0, 0, 0, 0.05)',
-  accent: '#3b82f6', 
-  border: 'rgba(51, 65, 85, 0.5)'
+  activity: '#4be546',
+  inactive: '#e54646',
+
+  sidebarBg: '#03080f',
+  sidebarHover: '#ffffff0d',
+  sidebarBorder: '#ffffff0f',
+  sidebarForeground: '#ffffffc7',
+  sidebarAccent: '#eff2f5',
+  sidebarAccentText: '#141b24',
 };
 
 export const darkTheme = {
   body: '#070e15', 
-  text: '#f8fafc',
-  cardBg: 'rgba(255, 255, 255, 0.03)',
-  menuBg: 'rgba(255, 255, 255, 0.03)',
-  accent: '#1481BA',
-  border: '#334155'
+  text: '#f8fafc9f',
+  activity: '#4be546',
+  inactive: '#e54646',
+
+  sidebarBg: '#03080f',
+  sidebarHover: '#ffffff0d',
+  sidebarBorder: '#ffffff0f',
+  sidebarForeground: '#ffffff',
+  sidebarAccent: '#141b24',
+  sidebarAccentText: '#141b24',
 };

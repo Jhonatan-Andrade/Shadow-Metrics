@@ -1,5 +1,9 @@
-
+import { Layout } from "./layout.tsx";
 
 export default function Dashboard() {
-  return (<h1>Dashboard</h1>);
+  return (
+    <Layout>
+      <h1>Dashboard</h1>
+    </Layout>
+  );
 }

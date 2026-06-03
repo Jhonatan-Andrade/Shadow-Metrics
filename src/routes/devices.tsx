@@ -1,4 +1,9 @@
-
+import { Layout } from "./layout.tsx";
+  
 export default function Devices() {
-  return (<h1>Devices</h1>);
+  return (
+    <Layout>
+      <h1>Devices</h1>
+    </Layout>
+  );
 }

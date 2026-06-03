@@ -4,10 +4,14 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     body: string;
     text: string;
-    cardBg: string;
-    menuBg: string;
-    accent: string;
-    border: string;
+    activity: string;
+    inactive: string;
+    sidebarBg: string;
+    sidebarHover: string;
+    sidebarBorder: string;
+    sidebarForeground: string;
+    sidebarAccent: string;
+    sidebarAccentText: string;
   }
 }
 

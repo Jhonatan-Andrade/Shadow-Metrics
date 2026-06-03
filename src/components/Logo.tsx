@@ -17,9 +17,9 @@ export const Logo = () => {
 const Main = styled.div`
     display: flex;
     flex-direction: row;
+    width: 100%;
     gap: 0.5rem;
     align-items: center;
-    gap: 0.5rem;
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 1rem;

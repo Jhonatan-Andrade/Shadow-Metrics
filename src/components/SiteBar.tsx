@@ -53,7 +53,10 @@ export const SiteBar = () => {
                 <ZabbixOn>
                     <ZabbixText>Zabbix Server</ZabbixText>
                     <ZabbixLabel>
-                        <Pulse style={{ backgroundColor: zabbixOnline ? theme.activity : theme.inactive }} />
+                        <PulseBox>
+                            <Circle style={{ backgroundColor: zabbixOnline ? theme.activity : theme.inactive }} />
+                            <Pulse style={{ backgroundColor: zabbixOnline ? theme.activity : theme.inactive }} />
+                        </PulseBox>
                         <span style={{ color: zabbixOnline ? theme.activity : theme.inactive }}>
                             {zabbixOnline ? "Online" : "Offline"}
                         </span>
@@ -70,7 +73,8 @@ const Main = styled.div`
     height: 100vh;
     padding: 0 0.2rem;
     background-color: ${(props) => props.theme.sidebarBg};
-    color: ${(props) => props.theme.text};
+    color: ${(props) => props.theme.textsecondary};
+    border-right: 1px solid ${(props) => props.theme.sidebarBorder};
 `
 const Nav = styled.nav`
     display: flex;
@@ -100,8 +104,8 @@ const Label = styled.span`
 `
 const Footer = styled.div`
     margin-top: auto;
+    width: calc(100% - 0.8rem);
     padding: 1rem 0.5rem;
-    border-top: 1px solid ${(props) => props.theme.sidebarBorder};
 `
 const ZabbixOn = styled.div`
     display: inline-block;
@@ -115,7 +119,7 @@ const ZabbixOn = styled.div`
 const ZabbixText = styled.h1`
     font-size: 0.875rem;
     font-weight: 600;
-    color: ${(props) => props.theme.text};
+    color: ${(props) => props.theme.textsecondary};
 `
 const ZabbixLabel = styled.div`
     font-size: 0.875rem;
@@ -126,7 +130,22 @@ const ZabbixLabel = styled.div`
     justify-content: flex-start;
     align-items: center;
 `
+const PulseBox = styled.div`
+    display: flex;
+    position: relative;
+    height: 1rem;
+    width: 1rem;
+    justify-content: center;
+    align-items: center;
+`
+const Circle = styled.div`
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 9999px;
+    background-color: ${(props) => props.theme.activity};
+`
 const Pulse = styled.span`
+    position: absolute;
     height: 0.5rem;
     width: 0.5rem;
     border-radius: 9999px;
@@ -136,10 +155,10 @@ const Pulse = styled.span`
     @keyframes pulse {
         10% {
             transform: scale(1);
-            opacity: 0.9;
+            opacity: 1;
         }
         100% {            
-            transform: scale(2);
+            transform: scale(3);
             opacity: 0;
         }
     }

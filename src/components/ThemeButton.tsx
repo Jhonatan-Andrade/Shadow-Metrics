@@ -14,7 +14,7 @@ const Button = styled.button`
   height: 3rem;
   font-size: 1.5rem;
   background-color: transparent;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.textprimary};
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;

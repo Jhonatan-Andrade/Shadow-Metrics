@@ -3,7 +3,8 @@ import { createGlobalStyle} from 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     body: string;
-    text: string;
+    textprimary: string;
+    textsecondary: string;
     activity: string;
     inactive: string;
     sidebarBg: string;
@@ -20,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     background-color: ${({ theme }) => theme.body};
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.textprimary};
     font-family: sans-serif;
     transition: all 0.25s linear;
   }

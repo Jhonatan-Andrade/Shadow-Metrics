@@ -1,9 +1,10 @@
+import { TopBar } from "../components/TopBar.tsx";
 import { Layout } from "./layout.tsx";
 
 export default function Dashboard() {
   return (
     <Layout>
-      <h1>Dashboard</h1>
+      <TopBar title="Visão Geral" subtitle="Pulse da infraestrutura em tempo real" />
     </Layout>
   );
 }

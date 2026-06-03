@@ -1,9 +1,10 @@
+import { TopBar } from "../components/TopBar.tsx";
 import { Layout } from "./layout.tsx";
 
 export default function Traffic() {
   return (
     <Layout>
-      <h1>Traffic</h1>
+      <TopBar title="Tráfego de rede" subtitle="Throughput agregado e por interface" />
     </Layout>
   );
 }

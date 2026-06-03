@@ -54,7 +54,9 @@ export const SiteBar = () => {
                     <ZabbixText>Zabbix Server</ZabbixText>
                     <ZabbixLabel>
                         <Pulse style={{ backgroundColor: zabbixOnline ? theme.activity : theme.inactive }} />
-                        <span style={{ color: zabbixOnline ? theme.activity : theme.inactive }}>Online</span>
+                        <span style={{ color: zabbixOnline ? theme.activity : theme.inactive }}>
+                            {zabbixOnline ? "Online" : "Offline"}
+                        </span>
                     </ZabbixLabel>
                 </ZabbixOn>
             </Footer>

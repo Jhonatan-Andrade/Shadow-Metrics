@@ -12,4 +12,5 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 const Main = styled.div`
     display: flex;
     flex-direction: row;
+    background: ${({ theme }) => theme.gradientBg};
 `;

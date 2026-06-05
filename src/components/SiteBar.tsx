@@ -3,7 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { AlertTriangle, LayoutDashboard, Network, Server } from "lucide-react";
 import { Logo } from "./Logo";
 import { useEffect, useState } from "react";
-import { checkZabbixServer } from "../services/zabbixService";
+import { ZabbixAPI } from "../services/api.zabbix";
 const items = [
     { to: "/", label: "Visão Geral", icon: LayoutDashboard },
     { to: "/devices", label: "Dispositivos", icon: Server },
@@ -12,16 +12,19 @@ const items = [
 ];
 
 export const SiteBar = () => {
+
     const path = useRouterState({ select: (s) => s.location.pathname });
     const theme = useTheme();
+    const zabbixApi = new ZabbixAPI();
+
     const [zabbixOnline, setZabbixOnline] = useState(false);
+
     useEffect(() => {
         const zabbixIsOnline = async () => {
             try {
-                const isOnline = await checkZabbixServer();
+                const isOnline = await zabbixApi.checkZabbixServer();
                 setZabbixOnline(isOnline);
             } catch (error) {
-                console.error("Erro ao verificar o status do Zabbix Server:", error);
                 setZabbixOnline(false);
             }
         };
@@ -42,9 +45,9 @@ export const SiteBar = () => {
                     <NavItem key={it.to} to={it.to} style={{ 
                             backgroundColor: active ? theme.sidebarAccent : "transparent", 
                             color: active ? "" : "inherit",
-                            borderLeft: active ? `2px solid ${theme.activity}` : "2px solid transparent"
+                            borderLeft: active ? `2px solid ${theme.gren}` : "2px solid transparent"
                         }}> 
-                        <Icon size={16} style={{ color: active ? theme.activity : "inherit" }} />
+                        <Icon size={16} style={{ color: active ? theme.gren : "inherit" }} />
                         <Label>{it.label}</Label>
                     </NavItem>
                 )})}
@@ -54,10 +57,10 @@ export const SiteBar = () => {
                     <ZabbixText>Zabbix Server</ZabbixText>
                     <ZabbixLabel>
                         <PulseBox>
-                            <Circle style={{ backgroundColor: zabbixOnline ? theme.activity : theme.inactive }} />
-                            <Pulse style={{ backgroundColor: zabbixOnline ? theme.activity : theme.inactive }} />
+                            <Circle style={{ backgroundColor: zabbixOnline ? theme.gren : theme.red }} />
+                            <Pulse style={{ backgroundColor: zabbixOnline ? theme.gren : theme.red }} />
                         </PulseBox>
-                        <span style={{ color: zabbixOnline ? theme.activity : theme.inactive }}>
+                        <span style={{ color: zabbixOnline ? theme.gren : theme.red }}>
                             {zabbixOnline ? "Online" : "Offline"}
                         </span>
                     </ZabbixLabel>
@@ -69,7 +72,7 @@ export const SiteBar = () => {
 const Main = styled.div`
     display: flex;
     flex-direction: column;
-    width: 14rem;
+    width: 16rem;
     height: 100vh;
     padding: 0 0.2rem;
     background-color: ${(props) => props.theme.sidebarBg};
@@ -142,14 +145,14 @@ const Circle = styled.div`
     height: 0.5rem;
     width: 0.5rem;
     border-radius: 9999px;
-    background-color: ${(props) => props.theme.activity};
+    background-color: ${(props) => props.theme.gren};
 `
 const Pulse = styled.span`
     position: absolute;
     height: 0.5rem;
     width: 0.5rem;
     border-radius: 9999px;
-    background-color: ${(props) => props.theme.activity};
+    background-color: ${(props) => props.theme.gren};
     animation: pulse 2s infinite;
 
     @keyframes pulse {

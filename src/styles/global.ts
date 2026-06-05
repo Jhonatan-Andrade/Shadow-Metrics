@@ -5,8 +5,12 @@ declare module 'styled-components' {
     body: string;
     textprimary: string;
     textsecondary: string;
-    activity: string;
-    inactive: string;
+    gren: string,
+    red: string,
+    orange: string,
+    blue:string,
+    gradientBg:string,
+
     sidebarBg: string;
     sidebarHover: string;
     sidebarBorder: string;
@@ -24,5 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.textprimary};
     font-family: sans-serif;
     transition: all 0.25s linear;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 `;

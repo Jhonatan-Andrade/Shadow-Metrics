@@ -5,7 +5,7 @@ export const Logo = () => {
     return (
         <Main>
             <LogoImg>
-                <Activity size={24} color={theme.activity} />     
+                <Activity size={24} color={theme.gren} />     
             </LogoImg>
             <LogoText>
                 <LogoTextH1>SHADOW</LogoTextH1>
@@ -17,12 +17,12 @@ export const Logo = () => {
 const Main = styled.div`
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: calc(100% - 1.4rem);
+    align-items: center;
     gap: 0.5rem;
     align-items: center;
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 1rem;
     height: 4rem;
     padding: 0 0.8rem;
     border-bottom: 1px solid ${(props) => props.theme.sidebarBorder};

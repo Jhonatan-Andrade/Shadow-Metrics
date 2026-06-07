@@ -40,7 +40,6 @@ const Main = styled.div`
     width: 100%;
     border-radius: 0.375rem;
     border: 1px solid ${(props) => props.theme.sidebarBorder};
-    background-color: ${(props) => props.theme.sidebarBorder};
     box-shadow: var(--shadow-card);
 `
 const Header = styled.div`

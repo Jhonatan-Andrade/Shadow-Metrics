@@ -34,12 +34,6 @@ export default function Dashboard({ zabbixApi }: { zabbixApi: ZabbixAPI }) {
   const now = Date.now();
   const times = Array.from({ length: 11 }, (_, i) => now - (10 - i) * 6 * 60 * 1000);
 
-  const [alert] = useState([
-    { eventid: "1", hostname: "Core-Switch-01", severity: 4, description: "Interface GigabitEthernet1/0/1 down", durationMin: 12 },
-    { eventid: "2", hostname: "SRV-DB-PROD", severity: 5, description: "High CPU utilization (> 90%)", durationMin: 5 },
-    { eventid: "3", hostname: "FW-Borda-02", severity: 3, description: "BGP Session lost with ISP-A", durationMin: 45 },
-  ]);
-
   if (!summary) {
     return (
       <Layout>
@@ -137,7 +131,6 @@ const DashboardGrid = styled.section`
 const DashboardCard = styled.div`
   border-radius: 0.5rem;
   border: 1px solid ${(props) => props.theme.sidebarBorder};
-  background-color: ${(props) => props.theme.sidebarBorder};
   padding: 1rem;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 `;

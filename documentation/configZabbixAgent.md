@@ -13,7 +13,7 @@
 Caso precise alterar ou validar as configurações manualmente após a instalação, abra o arquivo `C:\Program Files\Zabbix Agent\zabbix_agentd.conf` como Administrador e verifique as seguintes linhas:
 
 ```ini
-Server=127.0.0.1,IP_DA_SUA_MAQUINA_LOCAL
+Server=IP_DA_SUA_MAQUINA_LOCAL
 ServerActive=IP_DA_SUA_MAQUINA_LOCAL
 Hostname=Windows-Local
 ```

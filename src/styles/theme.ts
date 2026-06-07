@@ -12,7 +12,7 @@ export const lightTheme = {
 
   sidebarBg: '#ffffff',
   sidebarHover: '#ffffff0d',
-  sidebarBorder: '#0000001e',
+  sidebarBorder: '#00000031',
   sidebarForeground: '#000000',
   sidebarAccent: '#0000002a',
   sidebarAccentText: '#141b24',
@@ -30,7 +30,7 @@ export const darkTheme = {
 
   sidebarBg: '#03080f',
   sidebarHover: '#ffffff0d',
-  sidebarBorder: '#ffffff0f',
+  sidebarBorder: '#ffffff13',
   sidebarForeground: '#ffffff',
   sidebarAccent: '#141b24',
   sidebarAccentText: '#141b24',

@@ -8,6 +8,7 @@ export interface ZabbixHost {
       available: string;
       error: string;
   }>;
+  groups?: Array<{ name: string }>;
 }
 
 export interface Device {
@@ -18,9 +19,7 @@ export interface Device {
   cpu: number;
   memory: number;
   disk: number;
-  latencyMs: number;
-  uptimeHours: number;
-  lastSeen: string;
+  group: string;
 }
 
 export interface TrafficPoint {
@@ -29,13 +28,11 @@ export interface TrafficPoint {
   outMbps: number;
 }
 
-export interface InterfaceTraffic {
-  hostid: string;
-  hostname: string;
-  iface: string;
-  inMbps: number;
-  outMbps: number;
-  errors: number;
+export interface Traffic {
+  entryTraffic: number;
+  exitTraffic: number;
+  maxEntryTraffic: number;
+  maxExitTraffic: number;
 }
 
 export type AlertSeverity = "info" | "warning" | "average" | "high" | "disaster";

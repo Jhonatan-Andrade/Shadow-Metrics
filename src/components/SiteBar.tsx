@@ -4,6 +4,7 @@ import { AlertTriangle, LayoutDashboard, Network, Server } from "lucide-react";
 import { Logo } from "./Logo";
 import { useEffect, useState } from "react";
 import { ZabbixAPI } from "../services/api.zabbix";
+import { StatusDot } from "./StatusDot";
 const items = [
     { to: "/", label: "Visão Geral", icon: LayoutDashboard },
     { to: "/devices", label: "Dispositivos", icon: Server },
@@ -56,10 +57,7 @@ export const SiteBar = () => {
                 <ZabbixOn>
                     <ZabbixText>Zabbix Server</ZabbixText>
                     <ZabbixLabel>
-                        <PulseBox>
-                            <Circle style={{ backgroundColor: zabbixOnline ? theme.gren : theme.red }} />
-                            <Pulse style={{ backgroundColor: zabbixOnline ? theme.gren : theme.red }} />
-                        </PulseBox>
+                        <StatusDot status={zabbixOnline === true ? "online" : "offline"} size={1} />
                         <span style={{ color: zabbixOnline ? theme.gren : theme.red }}>
                             {zabbixOnline ? "Online" : "Offline"}
                         </span>
@@ -132,37 +130,4 @@ const ZabbixLabel = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-`
-const PulseBox = styled.div`
-    display: flex;
-    position: relative;
-    height: 1rem;
-    width: 1rem;
-    justify-content: center;
-    align-items: center;
-`
-const Circle = styled.div`
-    height: 0.5rem;
-    width: 0.5rem;
-    border-radius: 9999px;
-    background-color: ${(props) => props.theme.gren};
-`
-const Pulse = styled.span`
-    position: absolute;
-    height: 0.5rem;
-    width: 0.5rem;
-    border-radius: 9999px;
-    background-color: ${(props) => props.theme.gren};
-    animation: pulse 2s infinite;
-
-    @keyframes pulse {
-        10% {
-            transform: scale(1);
-            opacity: 1;
-        }
-        100% {            
-            transform: scale(3);
-            opacity: 0;
-        }
-    }
 `
